@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特教老師專用 Gem 設定產生器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #1e293b;
+        }
+        * {
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header class="w-full bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-md py-4 px-6 flex flex-wrap justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <div class="bg-white/20 p-2.5 rounded-xl text-xl backdrop-blur-sm">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold tracking-wide">特教老師專用 Gem 設定工具</h1>
+                <p class="text-xs md:text-sm text-teal-100">一目了然、隨點即改、一鍵複製，輕鬆打造專屬教學助理</p>
+            </div>
+        </div>
+        <div class="mt-3 md:mt-0 flex items-center space-x-2">
+            <button onclick="resetAll()" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition border border-white/20 flex items-center gap-2">
+                <i class="fa-solid fa-rotate-right"></i> 還原預設
+            </button>
+            <button onclick="copyAllConfig()" class="px-5 py-2 bg-white text-teal-700 hover:bg-teal-50 font-bold rounded-lg shadow-sm transition flex items-center gap-2 text-sm">
+                <i class="fa-solid fa-copy"></i> 複製完整設定
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-8 space-y-8">
+
+        <!-- Info Banner -->
+        <div class="bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-xl shadow-xs flex items-start gap-3">
+            <i class="fa-solid fa-circle-info text-teal-600 text-lg mt-0.5"></i>
+            <div class="text-sm text-teal-900">
+                <p class="font-bold mb-0.5">使用說明：</p>
+                <p>您可以直接點選下方各個區塊的文字進行修改，修改後的內容會即時更新至右側或全域複製內容中。完成後點擊右上角的「複製完整設定」即可貼入 Google Gem 的指令框中！</p>
+            </div>
+        </div>
+
+        <!-- Section 1: Role Setting -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition hover:shadow-md">
+            <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="bg-teal-100 text-teal-800 text-xs font-bold px-2.5 py-1 rounded-full">區塊一</span>
+                    <h2 class="font-bold text-slate-800 text-lg">角色設定</h2>
+                </div>
+                <button onclick="copySection('section-role')" class="text-xs text-slate-500 hover:text-teal-600 bg-slate-100 hover:bg-teal-50 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
+                    <i class="fa-regular fa-copy"></i> 複製此段
+                </button>
+            </div>
+            <div id="section-role" class="p-6 space-y-3 text-slate-700 leading-relaxed">
+                <p class="font-semibold text-slate-900">角色設定：</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">你是一位資深的國小分散式資源班特教教師，具備數學教育背景。</span></li>
+                    <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">擅長結合實證教學法與現場實務，強調透過『具體—半具體—抽象（CRA）』的歷程，引導學習障礙與智能障礙學生從操作中理解數學。</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 2: Specific Tasks -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition hover:shadow-md">
+            <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="bg-teal-100 text-teal-800 text-xs font-bold px-2.5 py-1 rounded-full">區塊二</span>
+                    <h2 class="font-bold text-slate-800 text-lg">具體任務</h2>
+                </div>
+                <button onclick="copySection('section-tasks')" class="text-xs text-slate-500 hover:text-teal-600 bg-slate-100 hover:bg-teal-50 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
+                    <i class="fa-regular fa-copy"></i> 複製此段
+                </button>
+            </div>
+            <div id="section-tasks" class="p-6 space-y-4 text-slate-700 leading-relaxed">
+                <p class="font-semibold text-slate-900">具體任務：</p>
+                
+                <div class="space-y-2">
+                    <p class="font-medium text-slate-800 text-sm">1) 教學轉化與活動設計：</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">將數學概念轉化為連結舊經驗、實際操作表徵且可重複練習的任務。</span></li>
+                        <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">設計時強調『操作表徵』（如拖拉數棒、疊放錢幣），而非單純計算題目。</span></li>
+                        <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">嵌入同步表徵機制：操作具體教具時，畫面需同步顯示對應的數字或符號，連結『量』與『數』。</span></li>
+                        <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">包含自我解釋引導：利用簡單圖示提問，引導學生思考操作過程中的邏輯。</span></li>
+                        <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">加入預測與驗證：在動作前提供預測機會，操作後立即給予視覺回饋。</span></li>
+                        <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">使用色彩編碼：利用顏色提示數學結構（如個位藍色、十位紅色），建立位值框架。</span></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-2 pt-2">
+                    <p class="font-medium text-slate-800 text-sm">2) 數位架構設計規範：</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">以『微型網站』形式呈現，畫面必須直觀、高對比、低干擾。</span></li>
+                        <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">減少文字指導語，盡可能以圖像或 Icon 取代。</span></li>
+                        <li>
+                            <span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">當收到製作『數學教學互動 Canvas』的要求時：</span>
+                            <ul class="list-[circle] pl-5 mt-1 space-y-1 text-sm">
+                                <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">a) 技術棧：提供單一 HTML 檔案，包含 Tailwind CSS 與 SVG 繪圖。</span></li>
+                                <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">b) 觸控優化：所有拖拉元件需支援觸控事件，確保在平板上操作流暢。</span></li>
+                                <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">c) 響應式佈局：自動適應平板橫向顯示，點擊元件大小至少 44x44 像素。</span></li>
+                                <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">d) 佈局：頂部模式切換，中間分左右區域（問題/操作），底部為元件選單。</span></li>
+                                <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">e) 視覺細節：等分提示線使用灰色實線（#94a3b8）。</span></li>
+                                <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">f) 功能性：具備重置（Reset）與撤銷（Undo）功能。</span></li>
+                                <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">g) 其他注意事項：出現分數時，請提供分子在上、分母在下的形式呈現</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Tone and Style -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition hover:shadow-md">
+            <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="bg-teal-100 text-teal-800 text-xs font-bold px-2.5 py-1 rounded-full">區塊三</span>
+                    <h2 class="font-bold text-slate-800 text-lg">語氣與風格</h2>
+                </div>
+                <button onclick="copySection('section-tone')" class="text-xs text-slate-500 hover:text-teal-600 bg-slate-100 hover:bg-teal-50 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
+                    <i class="fa-regular fa-copy"></i> 複製此段
+                </button>
+            </div>
+            <div id="section-tone" class="p-6 space-y-3 text-slate-700 leading-relaxed">
+                <p class="font-semibold text-slate-900">語氣與風格：</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">正向支持：溫暖耐心的引導者，不使用否定詞，提供低挫折環境。</span></li>
+                    <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">具體讚美：針對『過程』給予具體鼓勵。</span></li>
+                    <li><span contenteditable="true" class="editable outline-none focus:bg-amber-50 focus:ring-2 focus:ring-amber-300 rounded px-1 transition">語言精確性：使用小學生易懂的詞彙，但在涉及數學概念時，必須使用正確術語（如：平分、位值、合成），嚴禁模糊詞彙。</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Bottom Action Bar -->
+        <div class="flex justify-center pb-8">
+            <button onclick="copyAllConfig()" class="px-8 py-4 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition transform active:scale-95 flex items-center gap-3 text-lg">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> 一鍵複製完整 Gem 設定
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full bg-slate-100 border-t border-slate-200 py-4 text-center text-xs text-slate-500 mt-auto">
+        特教老師專用工具 · 讓數位教學更簡單
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 z-50">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="toast-message" class="text-sm font-medium">複製成功！</span>
+    </div>
+
+    <script>
+        // Function to show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Helper function to extract text cleanly preserving lists formatting
+        function extractFormattedText(elementId) {
+            const container = document.getElementById(elementId);
+            if (!container) return '';
+            
+            // Reconstruct text block based on structure
+            let text = "";
+            const paragraphs = container.querySelectorAll('p');
+            paragraphs.forEach(p => {
+                text += p.innerText + "\n";
+            });
+
+            const lists = container.querySelectorAll('ul');
+            lists.forEach(ul => {
+                const items = ul.querySelectorAll(':scope > li');
+                items.forEach(li => {
+                    // Check if li contains sublist
+                    let directText = "";
+                    li.childNodes.forEach(node => {
+                        if (node.nodeType === Node.TEXT_NODE) {
+                            directText += node.textContent.trim();
+                        } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'UL') {
+                            directText += node.innerText.trim();
+                        }
+                    });
+                    if (directText) {
+                        text += "* " + directText + "\n";
+                    }
+
+                    // Handle sub-lists if any
+                    const subUl = li.querySelector('ul');
+                    if (subUl) {
+                        const subItems = subUl.querySelectorAll('li');
+                        subItems.forEach(subLi => {
+                            text += "  - " + subLi.innerText.trim() + "\n";
+                        });
+                    }
+                });
+            });
+            return text.trim();
+        }
+
+        // Copy a specific section
+        function copySection(sectionId) {
+            const text = extractFormattedText(sectionId);
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast('已成功複製該段設定！');
+            } catch (err) {
+                showToast('複製失敗，請手動複製');
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // Copy entire configuration across all sections
+        function copyAllConfig() {
+            const roleText = extractFormattedText('section-role');
+            const tasksText = extractFormattedText('section-tasks');
+            const toneText = extractFormattedText('section-tone');
+
+            const fullConfig = roleText + "\n\n" + tasksText + "\n\n" + toneText;
+
+            const textArea = document.createElement("textarea");
+            textArea.value = fullConfig;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast('已成功複製完整 Gem 設定！');
+            } catch (err) {
+                showToast('複製失敗，請手動複製');
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // Reset page to original default texts
+        function resetAll() {
+            if (confirm("確定要將所有修改還原為預設內容嗎？")) {
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
